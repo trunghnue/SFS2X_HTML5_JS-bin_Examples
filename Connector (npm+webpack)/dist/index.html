@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="gotoAndPlay/()">
+	<title>SmartFoxServer 2X | Connector</title>
+
+	<!-- Reset styles -->
+	<link href="css/reset.css" rel="stylesheet" type="text/css" />
+
+	<!-- Set custom styles -->
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div id="header" class="group">
+		<img id="logo" src="images/logo.png"/>
+		<p id="title1">
+			SmartFoxServer 2X Examples<br/>
+			<strong>Connector (webpack)</strong><br/>
+			&copy; 2018 gotoAndPlay()
+		</p>
+	</div>
+	<div id="main">
+		<div id="controls">
+			<input type="text" id="addressIn" placeholder="Enter address" value="localhost" />
+			<input type="text" id="portIn" placeholder="Enter port" value="8080" />
+			<input type="checkbox" id="debugCb" /> Show debug
+			<input type="button" id="connectBt" value="Connect" />
+			<input type="button" id="disconnectBt" value="Disconnect" style="display: none;" />
+		</div>
+		<div id="log">
+			<strong>Connection log</strong><br>
+			Enter the server address and port and click the <em>Connect</em> button
+		</div>
+	</div>
+
+	<!-- Load bundled code generated with webpack -->
+	<script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>

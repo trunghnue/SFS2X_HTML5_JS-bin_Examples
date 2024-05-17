@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="author" content="Bax">
+	<title>SmartFoxServer 2X | Simple Chat</title>
+
+	<!-- Reset styles -->
+	<link href="css/reset.css" rel="stylesheet" type="text/css" />
+
+	<!-- Load jQuery and jQWidgets frameworks -->
+	<link href="libs/jqwidgets/styles/jqx.base.css" rel="stylesheet" type="text/css" />
+	<link href="libs/jqwidgets/styles/jqx.summer.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="libs/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxcore.js"></script>
+
+	<!-- Set custom styles -->
+	<link href="css/main.css" rel="stylesheet" type="text/css" />
+
+	<!-- Load jQWidgets' required widgets -->
+	<script type="text/javascript" src="libs/jqwidgets/jqxbuttons.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxscrollbar.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxlistbox.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxexpander.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxnavigationbar.js"></script>
+	<script type="text/javascript" src="libs/jqwidgets/jqxpanel.js"></script>
+
+	<!-- Load SFS2X JS API -->
+	<script type="text/javascript" src="libs/sfs2x-api-1.7.11.js"></script>
+
+	<!-- Load main script -->
+	<script type="text/javascript" src="scripts/main.js"></script>
+
+	<!-- Initialize user interface -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			var theme = "summer";
+
+			// Init main widgets
+			$("#connectBt").jqxButton({width:100, theme:theme});
+			$("#loginBt").jqxButton({width:100, theme:theme, disabled:true});
+			$("#logoutBt").jqxButton({width:100, theme:theme, disabled:true});
+			$("#disconnectBt").jqxButton({width:100, theme:theme, disabled:true});
+			$("#sideBar").jqxNavigationBar({width:240, height:510, sizeMode:"fitAvailableHeight", theme:theme});
+			$("#roomList").jqxListBox({source:[], width:238, height:453, theme:theme});
+			$("#userList").jqxListBox({source:[], width:238, height:420, theme:theme, enableSelection:false, enableHover:false});
+			$("#chatAreaPn").jqxPanel({width:578, height:400, theme:theme, disabled:true, autoUpdate:true});
+			$("#sendMsgBt").jqxButton({width:100, theme:theme, disabled:true});
+			$("#setTopicBt").jqxButton({width:100, theme:theme, disabled:true});
+			$("#setUserNickBt").jqxButton({width:76, theme:theme, disabled:true});
+
+			// Add event listeners
+			$("#connectBt").click(onConnectBtClick);
+			$("#loginBt").click(onLoginBtClick);
+			$("#logoutBt").click(onLogoutBtClick);
+			$("#disconnectBt").click(onDisconnectBtClick);
+			$("#roomList").bind("select", onRoomSelected);
+			$("#sendMsgBt").click(onSendPublicMessageBtClick);
+			$("#setTopicBt").click(onSetTopicBtClick);
+			$("#setUserNickBt").click(onSetUserNickBtClick);
+	    });
+	</script>
+
+</head>
+
+<body onLoad="init()">
+	<div id="header">
+		<img src="images/logo.png"/>
+		<p id="title">SmartFoxServer 2X Examples<br/><strong>Simple Chat</strong><br/>&copy; 2017 gotoAndPlay()</p>
+	</div>
+	<div id="controls" class="group">
+		<input type="button" id="connectBt" value="Connect"/>
+		<input type="text" id="usernameIn" class="textInput" disabled="true" placeholder="Your username"/>
+		<input type="button" id="loginBt" value="Login"/>
+		<input type="button" id="logoutBt" value="Logout"/>
+		<input type="button" id="disconnectBt" value="Disconnect"/>
+	</div>
+	<div id="main" class="group">
+		<div id="chatbox">
+			<p id="chatTopicLb" class="chatTopic"></p>
+			<p class="sectionTitle">Chat</p>
+			<div id="chatAreaPn"></div>
+			<div class="chatControls">
+				<div>
+					<input type="text" id="publicMsgIn" class="textInput" disabled="true" placeholder="Type your message &amp; hit send" style="width: 463px;"/>
+					<input type="button" id="sendMsgBt" value="Send"/>
+				</div>
+				<div class="vSeparateTop">
+					<label>Chat topic:</label>
+					<input type="text" id="roomTopicIn" class="textInput" disabled="true"/>
+					<input type="button" id="setTopicBt" value="Set"/>
+				</div>
+			</div>
+		</div>
+		<div id="sideBar">
+			<!--Header-->
+			<div>Rooms</div>
+			<!--Content-->
+			<div>
+				<div id="roomList"></div>
+			</div>
+
+			<!--Header-->
+			<div>Users</div>
+			<!--Content-->
+			<div>
+				<div class="sideBarControls">
+					<input type="text" id="userNickIn" class="textInput small" disabled="true" placeholder="My nickname"/>
+					<input type="button" id="setUserNickBt" value="Set"/>
+				</div>
+				<div id="userList"></div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<p>This example application makes use of <a href="http://www.jqwidgets.com/" target="_blank">jQWidgets UI Toolkit</a>.
+			The widgets are distributed for learning purposes only and you are not entitled to use them in a commercial product.
+			If needed, please visit the <b>jQWidgets</b> website to acquire a proper license.</p>
+	</div>
+</body>
+</html>
